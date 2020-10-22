@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="17156" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="Ym2-gY-q57">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17125"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="Stack View standard spacing" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <scenes>
+        <!--Taux de change-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" userLabel="Taux de change" customClass="ViewController" customModule="LeBaluchon" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleAspectFill" distribution="equalCentering" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="w7o-4c-ICk">
+                                <rect key="frame" x="20" y="114" width="374" height="100"/>
+                                <subviews>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="france" translatesAutoresizingMaskIntoConstraints="NO" id="JeL-Cj-fSq">
+                                        <rect key="frame" x="0.0" y="0.0" width="100" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="nuR-0Y-twQ"/>
+                                        </constraints>
+                                    </imageView>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="USD" translatesAutoresizingMaskIntoConstraints="NO" id="3cD-AJ-VaV">
+                                        <rect key="frame" x="274" y="0.0" width="100" height="100"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="100" id="EzR-Dy-cU4"/>
+                                            <constraint firstAttribute="width" secondItem="3cD-AJ-VaV" secondAttribute="height" multiplier="1:1" id="LGi-Q6-u1T"/>
+                                        </constraints>
+                                    </imageView>
+                                </subviews>
+                            </stackView>
+                            <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="dOA-Oz-Ryz">
+                                <rect key="frame" x="20" y="264" width="374" height="34"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vrU-Py-g56">
+                                        <rect key="frame" x="0.0" y="0.0" width="183" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="UCc-KU-8HU">
+                                        <rect key="frame" x="191" y="0.0" width="183" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                            </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s3O-PZ-D6N">
+                                <rect key="frame" x="100" y="498" width="214" height="30"/>
+                                <state key="normal" title="Button"/>
+                                <connections>
+                                    <action selector="convertCurrency:" destination="BYZ-38-t0r" eventType="touchUpInside" id="9CA-QD-uLd"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="dOA-Oz-Ryz" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="3pd-Es-AEm"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="s3O-PZ-D6N" secondAttribute="trailing" constant="100" id="69I-MU-qvP"/>
+                            <constraint firstItem="dOA-Oz-Ryz" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="6O2-3W-kgh"/>
+                            <constraint firstItem="w7o-4c-ICk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="70" id="CxX-Pq-ejh"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="dOA-Oz-Ryz" secondAttribute="trailing" constant="20" id="QQb-cC-A6f"/>
+                            <constraint firstItem="s3O-PZ-D6N" firstAttribute="top" secondItem="dOA-Oz-Ryz" secondAttribute="bottom" constant="200" id="Wqy-Ig-J6Y"/>
+                            <constraint firstItem="s3O-PZ-D6N" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="100" id="aBc-Vt-MXq"/>
+                            <constraint firstItem="dOA-Oz-Ryz" firstAttribute="top" secondItem="w7o-4c-ICk" secondAttribute="bottom" constant="50" id="lO8-lP-SLM"/>
+                            <constraint firstAttribute="trailing" secondItem="w7o-4c-ICk" secondAttribute="trailing" constant="20" id="t9m-IZ-H1w"/>
+                            <constraint firstItem="w7o-4c-ICk" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="20" id="yDC-od-cXm"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Taux de change" id="JL4-rb-Jwk" userLabel="Taux de change"/>
+                    <connections>
+                        <outlet property="currencyToConvert" destination="vrU-Py-g56" id="EbH-Cs-VTX"/>
+                        <outlet property="displayCurrencyConverted" destination="UCc-KU-8HU" id="rTw-7A-vBt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1047.8260869565217" y="37.5"/>
+        </scene>
+        <!--Traduction-->
+        <scene sceneID="G96-Aw-dWy">
+            <objects>
+                <viewController id="VHE-6W-wfF" userLabel="Traduction" customClass="TranslationViewController" customModule="LeBaluchon" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="JZD-Tb-kRG">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="yiX-zf-ZfN">
+                                <rect key="frame" x="16" y="144" width="382" height="569"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hUu-XL-2F1">
+                                        <rect key="frame" x="0.0" y="0.0" width="382" height="200"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="zGs-Gj-RL2"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xVl-CN-XH1">
+                                        <rect key="frame" x="100" y="220" width="182" height="129"/>
+                                        <state key="normal" title="Lancez la traduction"/>
+                                        <connections>
+                                            <action selector="detectedLanguage:" destination="VHE-6W-wfF" eventType="touchUpInside" id="GMh-Ul-E1r"/>
+                                        </connections>
+                                    </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pNt-uY-FxV">
+                                        <rect key="frame" x="0.0" y="369" width="382" height="200"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="200" id="t5n-ad-aQa"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="hUu-XL-2F1" firstAttribute="leading" secondItem="yiX-zf-ZfN" secondAttribute="leading" id="Kta-ln-1Mb"/>
+                                    <constraint firstItem="hUu-XL-2F1" firstAttribute="top" secondItem="yiX-zf-ZfN" secondAttribute="top" id="Rod-Hv-ryU"/>
+                                    <constraint firstItem="xVl-CN-XH1" firstAttribute="leading" secondItem="yiX-zf-ZfN" secondAttribute="leading" constant="100" id="VV0-pA-9Lx"/>
+                                    <constraint firstAttribute="trailing" secondItem="hUu-XL-2F1" secondAttribute="trailing" id="e5z-1h-KoF"/>
+                                    <constraint firstAttribute="trailing" secondItem="pNt-uY-FxV" secondAttribute="trailing" id="eOZ-KE-8li"/>
+                                    <constraint firstAttribute="trailing" secondItem="xVl-CN-XH1" secondAttribute="trailing" constant="100" id="tX1-xn-9ho"/>
+                                    <constraint firstItem="pNt-uY-FxV" firstAttribute="leading" secondItem="yiX-zf-ZfN" secondAttribute="leading" id="y8m-lG-yQa"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="DpY-Lt-cvm"/>
+                        <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                        <constraints>
+                            <constraint firstItem="DpY-Lt-cvm" firstAttribute="trailing" secondItem="yiX-zf-ZfN" secondAttribute="trailing" constant="16" id="EjE-jG-Zqd"/>
+                            <constraint firstItem="DpY-Lt-cvm" firstAttribute="bottom" secondItem="yiX-zf-ZfN" secondAttribute="bottom" constant="100" id="Por-tC-cKb"/>
+                            <constraint firstItem="yiX-zf-ZfN" firstAttribute="leading" secondItem="DpY-Lt-cvm" secondAttribute="leading" constant="16" id="gvn-qw-iLK"/>
+                            <constraint firstItem="yiX-zf-ZfN" firstAttribute="top" secondItem="DpY-Lt-cvm" secondAttribute="top" constant="100" id="t8B-3i-VUW"/>
+                            <constraint firstItem="yiX-zf-ZfN" firstAttribute="centerX" secondItem="JZD-Tb-kRG" secondAttribute="centerX" id="vZl-TQ-iwv"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Traduction" id="LqC-OL-lj1" userLabel="Traduction"/>
+                    <navigationItem key="navigationItem" id="6ZU-jn-4mj"/>
+                    <connections>
+                        <outlet property="textToTranslate" destination="hUu-XL-2F1" id="m13-Zl-IzO"/>
+                        <outlet property="translatedText" destination="pNt-uY-FxV" id="fmL-h9-MGb"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bSh-la-s2c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="138" y="915"/>
+        </scene>
+        <!--Météo-->
+        <scene sceneID="ddJ-Eo-IUL">
+            <objects>
+                <viewController id="3NZ-NW-FpW" userLabel="Météo" customClass="WeatherViewController" customModule="LeBaluchon" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="uWc-z3-1Nt">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="7wZ-WG-94z"/>
+                        <color key="backgroundColor" systemColor="systemPinkColor"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Météo" image="doll" id="3w3-kW-3yi" userLabel="Météo"/>
+                    <navigationItem key="navigationItem" id="9HT-ak-rv1"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="mw4-eq-QT8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1048" y="915"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="fOb-Ex-ajJ">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Ym2-gY-q57" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="jeE-zD-Poo">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="viewControllers" id="pd3-iI-LH6"/>
+                        <segue destination="VHE-6W-wfF" kind="relationship" relationship="viewControllers" id="X3e-v7-N0p"/>
+                        <segue destination="3NZ-NW-FpW" kind="relationship" relationship="viewControllers" id="IcG-NT-b8F"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hqc-Bc-fyp" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="137.68115942028987" y="37.5"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="USD" width="512" height="512"/>
+        <image name="doll" width="128" height="128"/>
+        <image name="france" width="512" height="512"/>
+        <systemColor name="systemOrangeColor">
+            <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
