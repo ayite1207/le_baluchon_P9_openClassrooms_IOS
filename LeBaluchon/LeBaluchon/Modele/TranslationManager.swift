@@ -10,10 +10,15 @@ import Foundation
 
 class TranslationManager: NSObject {
     
+    // MARK: - PROPERTYS
+    
     static let shared = TranslationManager()
     private let apiKey = "AIzaSyDJQ5qphjDqDG8O6beSABoa22lGe5ii3xA"
     var sourceLanguageCode : String?
     var supportedLanguages = [TranslationLanguage]()
+    
+    var textToTranslate: String?
+    var targetLanguageCode =  "en"
     
     override init() {
         super.init()
@@ -23,6 +28,7 @@ class TranslationManager: NSObject {
         var code : String?
         var name : String?
     }
+    // MARK: - METHODS
     
     private func makeRequest(usingTranslationAPI api: TranslationApi, urlParams: [String: String], completion: @escaping (_ results: [String: Any]?) -> Void) {
         if var components = URLComponents(string: api.getURL()) {
@@ -110,10 +116,45 @@ class TranslationManager: NSObject {
                 languageCode = code
                 languageName = name
                 print("||  languageCode = \(languageCode) , languageName = \(languageName)  ||")
-
+                
                 self.supportedLanguages.append(TranslationLanguage(code: languageCode, name: languageName))
             }
             completion(true)
+        }
+    }
+    
+    func translate(completion: @escaping (_ translations: String?) -> Void) {
+        guard let textToTranslate = textToTranslate  else { completion(nil); return }
+        let targetLanguage = targetLanguageCode
+        
+        var urlParams = [String: String]()
+        urlParams["key"] = apiKey
+        urlParams["q"] = textToTranslate
+        urlParams["target"] = targetLanguage
+        urlParams["format"] = "text"
+        
+        if let sourceLanguage = sourceLanguageCode {
+            urlParams["source"] = sourceLanguage
+        }
+        
+        makeRequest(usingTranslationAPI: .translate, urlParams: urlParams) { (results) in
+            guard let results = results else { completion(nil); return }
+            
+            guard let data = results["data"] as? [String: Any], let translations = data["translations"] as? [[String: Any]] else {return completion(nil)}
+            
+            var allTranslations = [String]()
+            
+            for translation in translations {
+                if let translatedText = translation["translatedText"] as? String {
+                    allTranslations.append(translatedText)
+                }
+            }
+            
+            if allTranslations.count > 0 {
+                completion(allTranslations[0])
+            } else {
+                completion(nil)
+            }
         }
     }
 }
