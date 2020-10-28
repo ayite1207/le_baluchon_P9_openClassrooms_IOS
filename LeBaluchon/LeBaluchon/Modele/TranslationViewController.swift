@@ -10,7 +10,7 @@ import UIKit
 class TranslationViewController: UIViewController {
     
     @IBOutlet weak var textToTranslate: UITextField!
-    @IBOutlet weak var translatedText: UITextField!
+    @IBOutlet weak var translatedTextFeild: UITextField!
     var alertCollection : GTAlertCollection!
     
     override func viewDidLoad() {
@@ -71,9 +71,6 @@ class TranslationViewController: UIViewController {
                 if success {
                     // Display languages in the tableview.
                     print("==========   SUCCES FETCHSUPPORTEDELANGUAGES     ============")
-                    DispatchQueue.main.async { [unowned self] in
-                        //                            self.tableView.reloadData()
-                    }
                 } else {
                     // Show an alert saying that something went wrong.
                     self.alertCollection.presentSingleButtonAlert(withTitle: "Supported Languages", message: "Oops! It seems that something went wrong and supported languages cannot be fetched.", buttonTitle: "OK", actionHandler: {
@@ -97,7 +94,7 @@ class TranslationViewController: UIViewController {
                     if let translation = translation {
                         
                         DispatchQueue.main.async { [unowned self] in
-                            self.translatedText.text = translation
+                            self.translatedTextFeild.text = translation
                         }
                         
                     } else {

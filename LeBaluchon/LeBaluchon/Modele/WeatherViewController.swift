@@ -10,6 +10,7 @@ import UIKit
 class WeatherViewController: UIViewController {
     
     var weatherInfo : Weather?
+    let weatherService = WeatherService()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -17,26 +18,27 @@ class WeatherViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+}
+
+extension WeatherViewController {
+
     func displayWeather(){
-        WeatherService.getWeather { (success, Weather) in
-            if success, let weather = Weather {
-                self.weatherInfo = weather
-                if let weather = self.weatherInfo{
-                    print(weather.name)
+        weatherService.getWeather { [unowned self] result in
+            switch result {
+            case .failure(let error) :
+                DispatchQueue.main.sync {
+                    print(error.localizedDescription)
+                }
+                
+            case .success(let weather) :
+                DispatchQueue.main.sync {
+                        self.weatherInfo = weather
+                        if let weather = self.weatherInfo{
+                            print(weather.name)
+                        }
                 }
             }
         }
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }

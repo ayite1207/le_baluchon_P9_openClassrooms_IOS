@@ -12,14 +12,13 @@ class TranslationManager: NSObject {
     
     // MARK: - PROPERTYS
     
-    static let shared = TranslationManager()
-    private let apiKey = "AIzaSyDJQ5qphjDqDG8O6beSABoa22lGe5ii3xA"
+    private let apiKey = ""
     var sourceLanguageCode : String?
     var supportedLanguages = [TranslationLanguage]()
     
     var textToTranslate: String?
     var targetLanguageCode =  "en"
-    
+    var urlParams = [String: String]()
     override init() {
         super.init()
     }
@@ -34,15 +33,13 @@ class TranslationManager: NSObject {
         if var components = URLComponents(string: api.getURL()) {
             components.queryItems = [URLQueryItem]()
             for (key, value) in urlParams {
-                print("la clé \(key)")
-                print(value)
                 components.queryItems?.append(URLQueryItem(name: key, value: value))
             }
             
             guard let url = components.url else {return}
             var request =  URLRequest(url: url)
             request.httpMethod = api.getHTTPMethod()
-            
+            print("REQUEST |||||    \(request)")
             let session = URLSession(configuration: .default)
             let task = session.dataTask(with: request){ (data, response, error) in
                 
@@ -50,7 +47,6 @@ class TranslationManager: NSObject {
                     completion(nil)
                     return
                 }
-                print("RESPONSE  : \(response)")
                 guard let response = response as? HTTPURLResponse,  response.statusCode == 200 || response.statusCode == 201 else {
                     completion(nil)
                     return }
@@ -127,7 +123,7 @@ class TranslationManager: NSObject {
         guard let textToTranslate = textToTranslate  else { completion(nil); return }
         let targetLanguage = targetLanguageCode
         
-        var urlParams = [String: String]()
+        
         urlParams["key"] = apiKey
         urlParams["q"] = textToTranslate
         urlParams["target"] = targetLanguage
@@ -155,6 +151,54 @@ class TranslationManager: NSObject {
             } else {
                 completion(nil)
             }
+        }
+    }
+    
+    enum NetWorkError: Error {
+
+        case noData
+        case noResponse
+        case undecodableData
+        
+    }
+
+
+
+    class TranslateService {
+        struct Traduction : Decodable{
+            
+        }
+        let session : URLSession
+        var task : URLSessionDataTask?
+        
+        init(session: URLSession = URLSession(configuration: .default)) {
+            self.session = session
+        }
+        
+            
+        func getTraduction(callback: @escaping (Result<Traduction, NetWorkError>)-> Void){
+            guard let contactUrl = URL(string: "http://data.fixer.io/api/latest?access_key=495341d65e1445272353e8f1fb7d8703&base=EUR&symbols=USD") else {return}
+            task?.cancel()
+             task = session.dataTask(with: contactUrl) { (data, response, error) in
+                    
+                    guard let data = data, error == nil else {
+                        callback(.failure(.noData))
+                        print("error data1")
+                        return
+                    }
+                    guard let response = response as? HTTPURLResponse, response.statusCode == 200 else {
+                        callback(.failure(.noResponse))
+                        print("error response")
+                        return
+                    }
+                    guard let currency = try? JSONDecoder().decode(Traduction.self, from: data) else{
+                        callback(.failure(.undecodableData))
+                        print("error data3")
+                        return
+                    }
+                    callback(.success(currency))
+            }
+            task?.resume()
         }
     }
 }

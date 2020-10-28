@@ -20,11 +20,14 @@ class ViewController: UIViewController {
         currencyToConvert.text = "1"
     }
     
-    
-    
-    
     @IBAction func convertCurrency(_ sender: Any) {
-        displayCurrencyConverted.text = String(Double(self.currencyToConvert.text!)! * currencyInfo!.rates["USD"]!)
+        convert()
+    }
+    
+    func convert(){
+        guard let currencyToConvertString = currencyToConvert.text, let currencyToConvert = Double(currencyToConvertString) else { return }
+        guard let multiplicator = currencyInfo!.rates["USD"] else { return}
+        displayCurrencyConverted.text = String(currencyToConvert * multiplicator)
     }
 }
 
