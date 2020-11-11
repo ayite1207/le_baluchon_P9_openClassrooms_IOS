@@ -11,7 +11,7 @@ class WeatherViewController: UIViewController {
     
     var weatherInfo : Weather?
     let weatherService = WeatherService()
-    
+    let key = Keys.weatherKey
     override func viewDidLoad() {
         super.viewDidLoad()
         displayWeather()
@@ -21,24 +21,41 @@ class WeatherViewController: UIViewController {
 }
 
 extension WeatherViewController {
-
+    
     func displayWeather(){
-        weatherService.getWeather { [unowned self] result in
+        weatherService.getDataCityOne { [unowned self] result in
             switch result {
-            case .failure(let error) :
-                DispatchQueue.main.sync {
-                    print(error.localizedDescription)
+            case .success(let weather):
+                DispatchQueue.main.async {
+                    self.weatherInfo = weather
+                    if let weather = self.weatherInfo{
+                        print(weather.name)
+                        displayWeatherCityTwo()
+                    }
                 }
-                
-            case .success(let weather) :
-                DispatchQueue.main.sync {
-                        self.weatherInfo = weather
-                        if let weather = self.weatherInfo{
-                            print(weather.name)
-                        }
+            case .failure(let error):
+                self.showAlert(with: error.description)
+            }
+        }
+    }
+    
+    func displayWeatherCityTwo() {
+        weatherService.getDataCitytwo { [unowned self] result in
+            switch result {
+            case .success(let weather):
+                DispatchQueue.main.async {
+                    self.weatherInfo = weather
+                    if let weather = self.weatherInfo{
+                        print(weather.name)
+                    }
                 }
+            case .failure(let error):
+                self.showAlert(with: error.description)
             }
         }
     }
     
 }
+
+
+

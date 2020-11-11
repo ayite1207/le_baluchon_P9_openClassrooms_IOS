@@ -1,36 +1,18 @@
 import Foundation
 
-struct Weather: Codable {
-    var coord : [String : Double]
-    var weather : [Data]
-    var base : String
-    var main : [String : Double]
-    var visibility : Int
-    var wind : [ String : Double]
-    var clouds : [String : Int]
-    var dt : Int
-    var sys : System
-    var timezone : Int
-    var id : Int
-    var name : String
-    var cod : Int
+struct Translate : Codable {
+    var data : Data
+    
 }
 
-struct Data: Codable {
-    var id :Int
-    var main : String
-    var description : String
-    var icon : String
+struct Data : Codable{
+    var translations : [Text]
 }
 
-struct System: Codable {
-    var type : Int
-    var id : Int
-    var country : String
-    var sunrise : Int
-    var sunset : Int
+struct Text : Codable{
+    var translatedText : String
+    var detectedSourceLanguage : String
 }
-
 let json = """
 {
     "data": {
@@ -44,10 +26,9 @@ let json = """
 }
 """.data(using: .utf8)!
 
+let translate = try JSONDecoder().decode(Translate.self, from: json)
 
-let temps = try JSONDecoder().decode(Weather.self, from: json)
-
-print(temps.clouds["all"])
+print(translate.data.translations[0].translatedText)
 
 //for contact in product.results{
 //    print(contact.location.street.number)

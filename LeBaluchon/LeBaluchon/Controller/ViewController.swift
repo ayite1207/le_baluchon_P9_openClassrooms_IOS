@@ -13,22 +13,22 @@ class ViewController: UIViewController {
     @IBOutlet weak var currencyToConvert: UITextField!
     @IBOutlet weak var displayCurrencyConverted: UITextField!
     let fixerService = FixerService()
+    var currentForConvert : Double = 0.0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        displayCurrency()
+
         currencyToConvert.text = "1"
+        displayCurrency()
     }
     
     @IBAction func convertCurrency(_ sender: Any) {
-        convert()
+        guard let stringAmount = currencyToConvert.text else {return}
+        guard let doubleAmount = Double(stringAmount) else {return}
+        displayCurrencyConverted.text = String(currentForConvert * doubleAmount)
+
     }
-    
-    func convert(){
-        guard let currencyToConvertString = currencyToConvert.text, let currencyToConvert = Double(currencyToConvertString) else { return }
-        guard let multiplicator = currencyInfo!.rates["USD"] else { return}
-        displayCurrencyConverted.text = String(currencyToConvert * multiplicator)
-    }
+
 }
 
 // MARK: CALL API FIXER
@@ -36,22 +36,27 @@ class ViewController: UIViewController {
 extension ViewController {
     
     func displayCurrency(){
-        fixerService.getCurrency { [unowned self] result in
+        fixerService.getData { [unowned self] result in
             switch result {
-            case .failure(let error):
-                DispatchQueue.main.async {
-                    print(error.localizedDescription)
-                }
-            case .success(let currency) :
+            case .success(let currency):
                 DispatchQueue.main.async {
                     self.currencyInfo = currency
                     if let currency = self.currencyInfo{
-                        print("1 euros vaut :  \(currency.rates["USD"]!)")
+                        print(currency.rates["USD"])
                     }
                 }
-                
+            case .failure(let error):
+                self.showAlert(with: error.description)
             }
         }
     }
     
+}
+
+extension UIViewController {
+    func showAlert(with message: String) {
+        let alertController = UIAlertController(title: "Error", message: message, preferredStyle: .alert)
+        alertController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        present(alertController, animated: true)
+    }
 }

@@ -80,7 +80,7 @@
         <!--Traduction-->
         <scene sceneID="G96-Aw-dWy">
             <objects>
-                <viewController id="VHE-6W-wfF" userLabel="Traduction" customClass="TranslationViewController" customModule="LeBaluchon" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="VHE-6W-wfF" userLabel="Traduction" customClass="TranslateViewController" customModule="LeBaluchon" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="JZD-Tb-kRG">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -100,7 +100,7 @@
                                         <rect key="frame" x="100" y="220" width="182" height="129"/>
                                         <state key="normal" title="Lancez la traduction"/>
                                         <connections>
-                                            <action selector="detectedLanguage:" destination="VHE-6W-wfF" eventType="touchUpInside" id="GMh-Ul-E1r"/>
+                                            <action selector="translateText:" destination="VHE-6W-wfF" eventType="touchUpInside" id="WOR-3i-v0T"/>
                                         </connections>
                                     </button>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pNt-uY-FxV">
@@ -136,8 +136,8 @@
                     <tabBarItem key="tabBarItem" title="Traduction" id="LqC-OL-lj1" userLabel="Traduction"/>
                     <navigationItem key="navigationItem" id="6ZU-jn-4mj"/>
                     <connections>
-                        <outlet property="textToTranslate" destination="hUu-XL-2F1" id="m13-Zl-IzO"/>
-                        <outlet property="translatedTextFeild" destination="pNt-uY-FxV" id="fmL-h9-MGb"/>
+                        <outlet property="textToTranslateTextField" destination="hUu-XL-2F1" id="LIu-we-TKz"/>
+                        <outlet property="translatedTextTextField" destination="pNt-uY-FxV" id="74x-nj-U6e"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bSh-la-s2c" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

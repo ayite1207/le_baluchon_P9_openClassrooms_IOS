@@ -7,30 +7,30 @@
 
 import Foundation
 
-struct Weather: Codable {
+struct Weather: Decodable {
     var coord : [String : Double]
-    var weather : [Data]
+    var weather : [D]
     var base : String
     var main : [String : Double]
     var visibility : Int
     var wind : [ String : Double]
     var clouds : [String : Int]
     var dt : Int
-    var sys : System
+//    var sys : System
     var timezone : Int
     var id : Int
     var name : String
     var cod : Int
 }
 
-struct Data: Codable {
+struct D: Decodable {
     var id :Int
     var main : String
     var description : String
     var icon : String
 }
 
-struct System: Codable {
+struct System: Decodable {
     var type : Int
     var id : Int
     var country : String

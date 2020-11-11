@@ -1,7 +1,7 @@
 
 import Foundation
 
-struct Weather: Codable {
+struct Weather: Decodable {
     var coord : [String : Double]
     var weather : [Data]
     var base : String
@@ -10,21 +10,21 @@ struct Weather: Codable {
     var wind : [ String : Double]
     var clouds : [String : Int]
     var dt : Int
-    var sys : System
+//    var sys : System
     var timezone : Int
     var id : Int
     var name : String
     var cod : Int
 }
 
-struct Data: Codable {
+struct Data: Decodable {
     var id :Int
     var main : String
     var description : String
     var icon : String
 }
 
-struct System: Codable {
+struct System: Decodable {
     var type : Int
     var id : Int
     var country : String
@@ -81,7 +81,7 @@ let json = """
 
 let temps = try JSONDecoder().decode(Weather.self, from: json)
 
-print(temps.clouds["all"])
+print(temps.name)
 
 //for contact in product.results{
 //    print(contact.location.street.number)
