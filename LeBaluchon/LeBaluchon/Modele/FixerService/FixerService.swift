@@ -21,7 +21,7 @@ final class FixerService {
 
     // MARK: - Methods
 
-    func getData(callback: @escaping (Result<Currency, NetworkError>) -> Void) {
+    func getFixerData(callback: @escaping (Result<Currency, NetworkError>) -> Void) {
         guard let url = URL(string: "http://data.fixer.io/api/latest?") else { return }
         let parameters = [("access_key", Keys.fixerKey),("base","EUR"),("symbols","USD")]
         httpClient.request(baseUrl: url, parameters: parameters, callback: callback)

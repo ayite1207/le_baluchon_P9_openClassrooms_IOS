@@ -7,9 +7,10 @@
 
 import Foundation
 
+// allows you to convert json in object
+
 struct TranslateString : Decodable {
     var data : Dat
-    
 }
 
 struct Dat : Decodable {

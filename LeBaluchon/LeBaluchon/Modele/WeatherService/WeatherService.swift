@@ -20,16 +20,16 @@ final class WeatherService {
     }
 
     // MARK: - Methods
-
-    func getDataCityOne(callback: @escaping (Result<Weather, NetworkError>) -> Void) {
+    
+    func getDataCity(callback: @escaping (Result<Weather, NetworkError>) -> Void) {
         guard let url = URL(string: "https://api.openweathermap.org/data/2.5/weather") else { return }
-        let parameters = [("q", "Paris"),("appid",Keys.weatherKey),("lang","fr")]
+        let parameters = [("q", "Paris"),("appid",Keys.weatherKey),("lang","en"),("units","metric")]
         httpClient.request(baseUrl: url, parameters: parameters, callback: callback)
     }
     
-    func getDataCitytwo(callback: @escaping (Result<Weather, NetworkError>) -> Void) {
-        guard let url = URL(string: "https://api.openweathermap.org/data/2.5/weather") else { return }
-        let parameters = [("q", "Madrid"),("appid",Keys.weatherKey),("lang","fr")]
+    func getDataTwoCities(callback: @escaping (Result<ListWeather, NetworkError>) -> Void) {
+        guard let url = URL(string: "https://api.openweathermap.org/data/2.5/group") else { return }
+        let parameters = [("id", "2988507,5128581"),("appid",Keys.weatherKey),("lang","en"),("units","metric")]
         httpClient.request(baseUrl: url, parameters: parameters, callback: callback)
     }
 }

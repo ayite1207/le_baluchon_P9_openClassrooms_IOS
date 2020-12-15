@@ -7,6 +7,8 @@
 
 import Foundation
 
+// allows you to recover the result of my API call and verify there are no errors
+
 final class HTTPClient {
 
     // MARK: - Properties
@@ -19,6 +21,8 @@ final class HTTPClient {
         self.httpEngine = httpEngine
     }
 
+    // MARK: - Methode
+    
     func request<T: Decodable>(baseUrl: URL, parameters: [(String, Any)]?, callback: @escaping (Result<T, NetworkError>) -> Void) {
         httpEngine.request(baseUrl: baseUrl, parameters: parameters) { data, response, error in
             DispatchQueue.main.async {

@@ -7,6 +7,9 @@
 
 import Foundation
 
+/**
+    This structure displays the different elements of a query, allows you to check the information in the event of an error
+ */
 
 struct Logger {
 
@@ -17,7 +20,7 @@ struct Logger {
         return URLRequest(url: url)
     }
 
-    // MARK: - Class's Methods
+    // MARK: - Method
 
     func show() {
         defer {

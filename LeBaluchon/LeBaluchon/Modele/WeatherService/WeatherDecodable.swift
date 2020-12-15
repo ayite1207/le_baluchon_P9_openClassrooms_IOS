@@ -7,33 +7,27 @@
 
 import Foundation
 
+// allows you to convert json in object
+
 struct Weather: Decodable {
     var coord : [String : Double]
-    var weather : [D]
+    var weather : [WeatherDessc]
     var base : String
     var main : [String : Double]
     var visibility : Int
     var wind : [ String : Double]
     var clouds : [String : Int]
     var dt : Int
-//    var sys : System
     var timezone : Int
     var id : Int
     var name : String
     var cod : Int
 }
 
-struct D: Decodable {
+struct WeatherDessc: Decodable {
     var id :Int
     var main : String
     var description : String
     var icon : String
 }
 
-struct System: Decodable {
-    var type : Int
-    var id : Int
-    var country : String
-    var sunrise : Int
-    var sunset : Int
-}

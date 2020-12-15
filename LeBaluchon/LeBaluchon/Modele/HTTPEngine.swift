@@ -7,6 +7,8 @@
 
 import Foundation
 
+// allows you to make a call to a API service 
+
 typealias HTTPResponse = (Data?, HTTPURLResponse?, Error?) -> Void
 
 final class HTTPEngine {
@@ -32,9 +34,6 @@ final class HTTPEngine {
             guard let response = response as? HTTPURLResponse else {
                 callback(data, nil, error)
                 return
-            }
-            if let dataDecoded = try? JSONDecoder().decode(Weather.self, from: data!){
-                print("dataDecoded  ::  \(dataDecoded)")
             }
             callback(data, response, error)
         }

@@ -7,11 +7,17 @@
 
 import Foundation
 
+// allows you to specify the type of error
+
 enum NetworkError: Error {
 
+    // MARK: - Cases
+    
     case noData
     case noResponse
     case undecodableData
+    
+    // MARK: - Properties
     
     var description : String {
         switch self {
