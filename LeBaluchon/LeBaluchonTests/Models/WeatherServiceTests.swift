@@ -54,9 +54,25 @@ class WeatherServiceTests: XCTestCase {
         wait(for: [expectation], timeout: 0.01)
     }
     
-    func testGetDataCity_WhenUrlSessionThrowNoData_ThenShouldReturnFaillureCallBack() {
+    func testGetDataCity_WhenUrlSessionThrowIncorrectData_ThenShouldReturnFaillureCallBack() {
         
         let weatherService = weatherRequest(data: FakeResponseData.incorrectData, response: FakeResponseData.responseOk, error: nil)
+        
+        let expectation = XCTestExpectation(description: "Waiting ...")
+        weatherService.getDataCity { (result) in
+            guard case .failure(let error) = result else {
+                XCTFail("testGetDataCity_WhenUrlSessionThrowAnNoData_ThenShouldReturnFaillureCallBack")
+                return
+            }
+            XCTAssertNotNil(error)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testGetDataCity_WhenUrlSessionThrowNoData_ThenShouldReturnFaillureCallBack() {
+        
+        let weatherService = weatherRequest(data: nil, response: FakeResponseData.responseOk, error: nil)
         
         let expectation = XCTestExpectation(description: "Waiting ...")
         weatherService.getDataCity { (result) in
@@ -124,7 +140,7 @@ class WeatherServiceTests: XCTestCase {
         wait(for: [expectation], timeout: 0.01)
     }
     
-    func testGetDataTwoCity_WhenUrlSessionThrowNoData_ThenShouldReturnFaillureCallBack() {
+    func testGetDataTwoCity_WhenUrlSessionThrowIncorrectData_ThenShouldReturnFaillureCallBack() {
         
         let weatherService = weatherRequest(data: nil, response: FakeResponseData.responseOk, error: nil)
         
@@ -139,6 +155,8 @@ class WeatherServiceTests: XCTestCase {
         }
         wait(for: [expectation], timeout: 0.01)
     }
+    
+    
     
     func testGetDataTwoCity_WhenUrlSessionThrowData_ThenShouldReturnSuccesCallBack() {
         

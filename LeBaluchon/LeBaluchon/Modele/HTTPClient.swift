@@ -16,13 +16,14 @@ final class HTTPClient {
     private let httpEngine: HTTPEngine
 
     // MARK: - Initializer
-
+    // i initialaze this class with HTTPEngine
     init(httpEngine: HTTPEngine = HTTPEngine()) {
         self.httpEngine = httpEngine
     }
 
     // MARK: - Methode
     
+    // The func request uses a generic of type Decodable, it allows to use this function with all my structures of type Decodable
     func request<T: Decodable>(baseUrl: URL, parameters: [(String, Any)]?, callback: @escaping (Result<T, NetworkError>) -> Void) {
         httpEngine.request(baseUrl: baseUrl, parameters: parameters) { data, response, error in
             DispatchQueue.main.async {

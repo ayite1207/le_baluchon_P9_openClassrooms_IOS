@@ -25,7 +25,9 @@ final class HTTPEngine {
     }
 
     // MARK: - Methods
-
+    
+    // func request allows you to make raquest To a API service
+    
     func request(baseUrl: URL, parameters: [(String, Any)]?, callback: @escaping HTTPResponse) {
         let url = encode(baseUrl: baseUrl, with: parameters)
         Logger(url: url).show()
@@ -40,9 +42,13 @@ final class HTTPEngine {
         task?.resume()
     }
 
+    // func encode return an URL for your API's request
+    
     private func encode(baseUrl: URL, with parameters: [(String, Any)]?) -> URL {
         guard var urlComponents = URLComponents(url: baseUrl, resolvingAgainstBaseURL: false), let parameters = parameters, !parameters.isEmpty else { return baseUrl }
+        
         urlComponents.queryItems = [URLQueryItem]()
+        
         for (key, value) in parameters {
             let queryItem = URLQueryItem(name: key, value: "\(value)")
             urlComponents.queryItems?.append(queryItem)

@@ -43,18 +43,14 @@ class ViewController: UIViewController {
                 let result = currentForConvert * numberToConvert
                 displayCurrencyConverted.text = String(format: "%.2f", result)
             } else {
-                let alertController = UIAlertController(title: "Error", message: "Your inscription is not correct", preferredStyle: .alert)
-                present(alertController, animated: true, completion: nil)
-                let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
                 currencyToConvert.text?.removeLast()
-                alertController.addAction(cancel)
+                let alertMessage = "Your inscription is not correct"
+                showAlert(with : alertMessage)
             }
         }
     }
     
 }
-
-
 
 extension ViewController {
     

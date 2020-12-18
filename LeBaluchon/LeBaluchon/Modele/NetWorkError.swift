@@ -7,7 +7,7 @@
 
 import Foundation
 
-// allows you to specify the type of error
+// allows you to specify the type of error and display the good message
 
 enum NetworkError: Error {
 

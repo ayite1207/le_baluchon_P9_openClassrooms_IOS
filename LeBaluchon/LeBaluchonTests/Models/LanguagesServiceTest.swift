@@ -58,9 +58,25 @@ class LanguagesServiceTests: XCTestCase {
         wait(for: [expectation], timeout: 0.01)
     }
     
-    func testGetData_WhenUrlSessionThrowNoData_ThenShouldReturnFaillureCallBack() {
+    func testGetData_WhenUrlSessionThrowIncorrectData_ThenShouldReturnFaillureCallBack() {
         
         let translateService = translateRequest(data: FakeResponseData.incorrectData, response: FakeResponseData.responseOk, error: nil)
+        
+        let expectation = XCTestExpectation(description: "Waiting ...")
+        translateService.getLanguagesData { (result) in
+            guard case .failure(let error) = result else {
+                XCTFail("testGetData_WhenUrlSessionThrowNoData_ThenShouldReturnFaillureCallBack")
+                return
+            }
+            XCTAssertNotNil(error)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testGetData_WhenUrlSessionThrowNoData_ThenShouldReturnFaillureCallBack() {
+        
+        let translateService = translateRequest(data: nil, response: FakeResponseData.responseOk, error: nil)
         
         let expectation = XCTestExpectation(description: "Waiting ...")
         translateService.getLanguagesData { (result) in

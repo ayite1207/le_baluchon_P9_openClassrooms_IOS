@@ -55,7 +55,7 @@ class FixerServiceTests: XCTestCase {
         wait(for: [expectation], timeout: 0.01)
     }
     
-    func testGetData_WhenUrlSessionThrowNoData_ThenShouldReturnFaillureCallBack() {
+    func testGetData_WhenUrlSessionThrowIncorrectData_ThenShouldReturnFaillureCallBack() {
         
         let fixerService = fixerRequest(data: FakeResponseData.incorrectData, response: FakeResponseData.responseOk, error: nil)
         
@@ -65,6 +65,24 @@ class FixerServiceTests: XCTestCase {
                 XCTFail("testGetData_WhenUrlSessionThrowNoData_ThenShouldReturnFaillureCallBack")
                 return
             }
+            XCTAssertNotNil(error)
+            print(error.description)
+            expectation.fulfill()
+        }
+        wait(for: [expectation], timeout: 0.01)
+    }
+    
+    func testGetData_WhenUrlSessionThrowNoData_ThenShouldReturnSuccesCallBack() {
+        
+        let fixerService = fixerRequest(data: nil, response: FakeResponseData.responseOk, error: nil)
+        
+        let expectation = XCTestExpectation(description: "Waiting ...")
+        fixerService.getFixerData { (result) in
+            guard case .failure(let error) = result else {
+                XCTFail("testGetData_WhenUrlSessionThrowData_ThenShouldReturnSuccesCallBack")
+                return
+            }
+            
             XCTAssertNotNil(error)
             print(error.description)
             expectation.fulfill()

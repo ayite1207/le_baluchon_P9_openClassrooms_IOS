@@ -48,10 +48,8 @@ class TranslateViewController: UIViewController, DisplayViewControllerDelegate, 
             langugesTableViewC.delegate = self
             self.present(langugesTableViewC, animated:true, completion:nil)
         } else {
-            let alertController = UIAlertController(title: "Error", message: "The data is not loaded please check your wifi connection", preferredStyle: .alert)
-            present(alertController, animated: true, completion: nil)
-            let cancel = UIAlertAction(title: "Cancel", style: .default, handler: nil)
-            alertController.addAction(cancel)
+            let alertMessage = "The data is not loaded please check your wifi connection"
+            showAlert(with : alertMessage)
         }
     }
     
