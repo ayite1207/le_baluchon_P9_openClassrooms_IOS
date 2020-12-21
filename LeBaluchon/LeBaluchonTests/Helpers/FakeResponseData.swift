@@ -22,8 +22,8 @@ class FakeResponseData {
                                      httpVersion: nil,
                                      headerFields: nil)
     
-    class WeatherError : Error{}
-    static let error = WeatherError()
+    class Error : Error{}
+    static let error = Error()
     
     static var weatherCorrectData : Data {
         let bundle = Bundle(for: FakeResponseData.self)

@@ -16,6 +16,7 @@ class TranslateViewController: UIViewController, DisplayViewControllerDelegate, 
     var languages :  Languages?
     var basicSentence = ""
     var translatedSentence = ""
+    
     @IBOutlet weak var textToTranslateTextField: UITextField!
     @IBOutlet weak var basicLanguageUIButton: UIButton!
     @IBOutlet weak var languageOftraductionUIButton: UIButton!
@@ -134,5 +135,10 @@ extension TranslateViewController {
             languageOftraductionUIButton.setTitle(name.uppercased(), for: .normal)
         }
     }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
 }
 
